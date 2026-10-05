@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>White Feather's Jewellery – Customer Information Form</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#faf7f0;--card:#fdfbf6;--ink:#1a1714;--gold:#8a6a47;--line:#a98a66;--mut:#6b6055;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1814;--card:#241f1a;--ink:#f1e9dc;--gold:#c9a679;--line:#8a6a47;--mut:#b5a898}}
+:root[data-theme="dark"]{--bg:#1c1814;--card:#241f1a;--ink:#f1e9dc;--gold:#c9a679;--line:#8a6a47;--mut:#b5a898}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Cormorant Garamond",Georgia,serif;font-size:19px;letter-spacing:.04em}
+.wrap{max-width:860px;margin:24px auto;padding:0 16px}
+.card{background:var(--card);border:1px solid var(--line);padding:32px 28px;position:relative;text-align:center}
+.brand{font-family:Arial,Helvetica,sans-serif;font-weight:700;letter-spacing:.2em;font-size:15px;margin-top:6px}
+h1{font-weight:500;letter-spacing:.14em;font-size:clamp(24px,5vw,40px);margin:18px 0 8px}
+.rule{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--gold);margin:6px auto 12px;max-width:400px}
+.rule i{flex:1;height:1px;background:var(--line)}
+.sub{font-style:italic;font-size:24px;margin:0 0 26px}
+form{text-align:left}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:640px){.row{grid-template-columns:1fr}}
+label.t,.t{display:block;font-size:20px;margin-bottom:8px}
+input[type=text],input[type=tel],textarea{width:100%;background:transparent;border:1px solid var(--line);border-radius:6px;padding:12px 14px;font:inherit;color:var(--ink)}
+input:focus,textarea:focus{outline:2px solid var(--gold);outline-offset:1px}
+textarea{min-height:120px;resize:vertical}
+::placeholder{font-style:italic;color:var(--mut)}
+.field{margin-bottom:24px}
+.opts{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center}
+.opt{display:flex;align-items:center;gap:10px;cursor:pointer}
+.opt input{appearance:none;width:26px;height:26px;border:1px solid var(--line);border-radius:5px;margin:0;display:grid;place-items:center;cursor:pointer}
+.opt input:checked::after{content:"✓";color:var(--gold);font-size:20px;line-height:1}
+.other{border:0;border-bottom:1px solid var(--line)!important;border-radius:0!important;padding:6px 4px!important;width:160px!important}
+.foot{text-align:right;font-style:italic;margin-top:8px;font-size:18px}
+button.go{background:var(--gold);color:#fff;border:0;border-radius:6px;padding:12px 34px;font:inherit;letter-spacing:.12em;cursor:pointer}
+button.go:disabled{opacity:.5}
+.msg{margin-top:14px;font-style:italic}
+.err{color:#b3392f}
+.admin{margin-top:28px;border:1px solid var(--line);padding:20px;background:var(--card)}
+.admin h2{margin:0 0 4px;font-weight:500}
+.count{font-size:44px;color:var(--gold)}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:16px}
+th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}
+.sm{font-size:16px;padding:8px 18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <div class="brand">WHITE FEATHER’S JEWELLERY</div>
+    <h1>CUSTOMER INFORMATION FORM</h1>
+    <div class="rule"><i></i>✦<i></i></div>
+    <p class="sub">We’d love to know you better</p>
+
+    <form id="f" novalidate>
+      <div class="row">
+        <div class="field"><label class="t" for="name">Name</label><input id="name" type="text" required autocomplete="name"></div>
+        <div class="field"><label class="t" for="phone">Contact Number</label><input id="phone" type="tel" required autocomplete="tel"></div>
+      </div>
+      <div class="field">
+        <span class="t">How did you hear about us?</span>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="src" value="Online Video"> Online Video</label>
+          <label class="opt"><input type="radio" name="src" value="Friends / Family"> Friends / Family</label>
+          <label class="opt"><input type="radio" name="src" value="Walk-in"> Walk-in</label>
+          <label class="opt"><input type="radio" name="src" value="Other"> Other <input id="other" class="other" type="text" aria-label="Other source"></label>
+        </div>
+      </div>
+      <div class="field"><label class="t" for="fb">Your Feedback</label><textarea id="fb" placeholder="Tell us about your experience..."></textarea></div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px">
+        <div><button class="go" id="send" type="submit">SUBMIT</button><div class="msg" id="msg" role="status"></div></div>
+        <div class="foot">Thank you for choosing<br>White Feathers Jewellery!</div>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+<script>
+// Paste your Google Apps Script "Web app" URL below
+var FORM_URL="PASTE_YOUR_WEB_APP_URL_HERE";
+var $=function(i){return document.getElementById(i)};
+$("f").onsubmit=async function(e){
+  e.preventDefault();
+  var m=$("msg");m.className="msg";
+  var name=$("name").value.trim(),phone=$("phone").value.trim();
+  if(!name||!phone){m.className="msg err";m.textContent="Please enter your name and contact number.";return}
+  var sel=document.querySelector('input[name=src]:checked');
+  var source=sel?sel.value:"";
+  if(source==="Other"&&$("other").value.trim())source="Other: "+$("other").value.trim();
+  $("send").disabled=true;
+  try{
+    await fetch(FORM_URL,{method:"POST",mode:"no-cors",
+      body:new URLSearchParams({name:name,phone:phone,heard_about_us:source,feedback:$("fb").value.trim()})});
+    m.textContent="Thank you! Your details have been received.";
+    $("f").reset();
+  }catch(x){m.className="msg err";m.textContent="Could not submit. Please try again."}
+  $("send").disabled=false;
+};
+</script>
+</body>
+</html>
